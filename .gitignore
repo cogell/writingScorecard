@@ -46,7 +46,7 @@ coverage/
 *.local
 .cache/
 
-# Beads (local db files)
+# Beads (local db files and reports)
 .beads/beads.db
 .beads/beads.db-*
 .beads/bd.sock
@@ -55,6 +55,7 @@ coverage/
 .beads/daemon.lock
 .beads/daemon.log
 .git/beads-worktrees/
+beads_report_*.md
 
 # bv (beads viewer) local config and caches
 .bv/
