@@ -4,13 +4,15 @@ import {
   scorecardResponseSchema,
   calibrateScore,
   calculateOverallScore,
+  calculateCost,
   CRITERIA,
   type CriterionScore,
+  type ModelId,
 } from "@fast/shared";
 import { SCORING_PROMPT } from "./prompts";
 import type { Env } from "../types/env";
 
-const MODEL = "claude-haiku-4-5";
+const MODEL: ModelId = "claude-haiku-4-5";
 
 export async function evaluateText(
   text: string,
@@ -23,6 +25,9 @@ export async function evaluateText(
   summary: string;
   modelUsed: string;
   processingTimeMs: number;
+  inputTokens: number;
+  outputTokens: number;
+  costUsd: number;
 }> {
   const startTime = Date.now();
 
@@ -30,12 +35,16 @@ export async function evaluateText(
     apiKey: env.ANTHROPIC_API_KEY,
   });
 
-  const { object } = await generateObject({
+  const { object, usage } = await generateObject({
     model: anthropic(MODEL),
     system: SCORING_PROMPT,
     prompt: `Evaluate the following text:\n\n${title ? `Title: ${title}\n\n` : ""}${text}`,
     schema: scorecardResponseSchema,
   });
+
+  const inputTokens = usage.promptTokens ?? 0;
+  const outputTokens = usage.completionTokens ?? 0;
+  const costUsd = calculateCost(MODEL, inputTokens, outputTokens);
 
   // Apply calibration to each score and ensure all criteria are present
   const calibratedScores: CriterionScore[] = CRITERIA.map((criterion) => {
@@ -62,5 +71,8 @@ export async function evaluateText(
     summary: object.summary,
     modelUsed: MODEL,
     processingTimeMs: Date.now() - startTime,
+    inputTokens,
+    outputTokens,
+    costUsd,
   };
 }

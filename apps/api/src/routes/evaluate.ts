@@ -58,6 +58,9 @@ export async function handleEvaluate(
       summary: result.summary,
       modelUsed: result.modelUsed,
       processingTimeMs: result.processingTimeMs,
+      inputTokens: result.inputTokens,
+      outputTokens: result.outputTokens,
+      costUsd: result.costUsd,
     };
 
     // TODO: Save to D1 in persistence phase

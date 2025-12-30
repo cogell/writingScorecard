@@ -26,6 +26,31 @@ export const MAX_TEXT_LENGTH = 50000;
 
 export const CALIBRATION_OFFSET = 1.5;
 
+// Claude Haiku 4.5 pricing (USD per million tokens)
+// Source: https://platform.claude.com/docs/en/about-claude/pricing
+export const MODEL_PRICING = {
+  'claude-haiku-4-5': {
+    inputPricePerMTok: 1.0, // $1.00 per million input tokens
+    outputPricePerMTok: 5.0, // $5.00 per million output tokens
+  },
+} as const;
+
+export type ModelId = keyof typeof MODEL_PRICING;
+
+/**
+ * Calculate cost in USD for given token usage.
+ */
+export function calculateCost(
+  modelId: ModelId,
+  inputTokens: number,
+  outputTokens: number,
+): number {
+  const pricing = MODEL_PRICING[modelId];
+  const inputCost = (inputTokens * pricing.inputPricePerMTok) / 1_000_000;
+  const outputCost = (outputTokens * pricing.outputPricePerMTok) / 1_000_000;
+  return inputCost + outputCost;
+}
+
 /**
  * Apply calibration to a provisional score.
  * Formula: max(0, provisionalScore - 1.5)

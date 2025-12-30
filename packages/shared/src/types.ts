@@ -26,6 +26,9 @@ export interface Scorecard {
   summary: string;
   modelUsed: string;
   processingTimeMs: number;
+  inputTokens: number;
+  outputTokens: number;
+  costUsd: number; // Total cost in USD
 }
 
 export interface EvaluationRequest {

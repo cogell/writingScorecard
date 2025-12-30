@@ -90,6 +90,15 @@ export function Scorecard({ scorecard, onReset }: ScorecardProps) {
           Evaluate another text
         </button>
       </div>
+
+      {/* Metadata Footer */}
+      <div className="px-3 py-2 border-t border-border">
+        <p className="text-[10px] text-muted-foreground text-center">
+          {scorecard.modelUsed} · {(scorecard.processingTimeMs / 1000).toFixed(1)}s · $
+          {scorecard.costUsd.toFixed(4)} · {scorecard.inputTokens.toLocaleString()} in /{' '}
+          {scorecard.outputTokens.toLocaleString()} out
+        </p>
+      </div>
     </div>
   );
 }

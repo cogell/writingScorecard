@@ -18,8 +18,11 @@ export {
   MIN_TEXT_LENGTH,
   MAX_TEXT_LENGTH,
   CALIBRATION_OFFSET,
+  MODEL_PRICING,
+  type ModelId,
   calibrateScore,
   calculateOverallScore,
+  calculateCost,
 } from './constants.js';
 
 // Validation schemas
