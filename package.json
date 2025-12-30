@@ -1,0 +1,23 @@
+{
+  "name": "writing-scorecard",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter @fast/shared build && pnpm --filter @fast/client --filter @fast/api --parallel run dev",
+    "dev:client": "pnpm --filter @fast/client dev",
+    "dev:api": "pnpm --filter @fast/api dev",
+    "build": "pnpm -r run build",
+    "typecheck": "pnpm -r run typecheck",
+    "lint": "pnpm -r run lint",
+    "clean": "pnpm -r run clean"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "packageManager": "pnpm@9.15.1"
+}

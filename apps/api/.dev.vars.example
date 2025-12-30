@@ -1,0 +1,7 @@
+# Copy this file to .dev.vars and fill in your values
+ANTHROPIC_API_KEY=sk-ant-...
+
+# For local dev, CF Access validation is skipped
+# These are only needed for deployed environments
+# CF_ACCESS_TEAM_DOMAIN=yourteam.cloudflareaccess.com
+# CF_ACCESS_AUD=your-application-aud-tag

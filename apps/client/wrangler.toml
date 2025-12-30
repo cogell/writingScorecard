@@ -1,0 +1,8 @@
+name = "writing-scorecard"
+compatibility_date = "2024-12-01"
+
+[assets]
+directory = "./dist"
+
+[env.production]
+name = "writing-scorecard"

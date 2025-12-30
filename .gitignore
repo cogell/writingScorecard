@@ -1,0 +1,60 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+.output/
+
+# Cloudflare
+.wrangler/
+.dev.vars
+
+# Environment variables
+.env
+.env.*
+!.env.example
+!.dev.vars.example
+
+# IDE
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Testing
+coverage/
+.nyc_output/
+
+# TypeScript
+*.tsbuildinfo
+
+# Misc
+*.local
+.cache/
+
+# Beads (local db files)
+.beads/beads.db
+.beads/beads.db-*
+.beads/bd.sock
+.beads/bd.pipe
+.beads/.exclusive-lock
+.beads/daemon.lock
+.beads/daemon.log
+.git/beads-worktrees/
+
+# bv (beads viewer) local config and caches
+.bv/

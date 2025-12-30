@@ -1,0 +1,37 @@
+name = "writing-scorecard-api"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+
+[dev]
+port = 8711
+
+# D1 Database - uncomment when implementing Phase 3 (Persistence)
+# Create with: wrangler d1 create fast-scorecards
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "fast-scorecards"
+# database_id = "placeholder-will-be-generated"
+
+# R2 Bucket for file uploads (Phase 4)
+# [[r2_buckets]]
+# binding = "UPLOADS"
+# bucket_name = "fast-uploads"
+
+# Durable Objects for streaming (Phase 2)
+# [durable_objects]
+# bindings = [
+#   { name = "STREAM_SESSION", class_name = "StreamSession" }
+# ]
+
+[vars]
+ENVIRONMENT = "development"
+
+[env.production]
+name = "writing-scorecard-api"
+[env.production.vars]
+ENVIRONMENT = "production"
+
+# Secrets (set via wrangler secret put <NAME>):
+# - ANTHROPIC_API_KEY: Your Anthropic API key
+# - CF_ACCESS_TEAM_DOMAIN: Your CF Access team domain
+# - CF_ACCESS_AUD: The Application Audience tag
