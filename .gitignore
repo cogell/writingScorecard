@@ -59,3 +59,7 @@ beads_report_*.md
 
 # bv (beads viewer) local config and caches
 .bv/
+
+# Claude Code (keep settings.local.json, ignore rest)
+.claude/*
+!.claude/settings.local.json
