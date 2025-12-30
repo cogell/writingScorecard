@@ -1,187 +1,80 @@
 # Style Guide
 
-> **Configuration**: Mira style · Stone base · Emerald accent · JetBrains Mono · No radius · Lucide icons
+> **Configuration**: Veritas style · Cream base · Forest green accent · Montserrat + Merriweather · Rounded corners · Lucide icons
 >
-> Based on [shadcn/ui](https://ui.shadcn.com) with Tailwind CSS v4
+> Based on [shadcn/ui](https://ui.shadcn.com) with Tailwind CSS v3
 
 ---
 
 ## Quick Start
 
 ```bash
-# Font (choose one)
-pnpm add @fontsource-variable/jetbrains-mono
-# or Google Fonts link in HTML:
-# <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap" rel="stylesheet">
-
 # Icons
 pnpm add lucide-react
+```
+
+Fonts are loaded via Google Fonts in `index.html`:
+```html
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
 ```
 
 ---
 
 ## Design Philosophy
 
-**Mira Style**: Compact and dense. Built for information-rich interfaces where screen real estate matters. Pairs naturally with monospace typography.
+**Veritas Style**: Organic, philosophical, and editorial. Inspired by nature and academic tradition. Designed for contemplative reading experiences where clarity and warmth matter.
 
 | Principle | Implementation |
 |-----------|----------------|
-| Density | Reduced padding, tighter spacing |
-| Sharpness | `border-radius: 0` on all elements |
-| Warmth | Stone grays (slight warm undertone) |
-| Clarity | Emerald accents for actions/focus |
-| Technical | JetBrains Mono throughout |
+| Warmth | Cream/beige backgrounds with subtle warmth |
+| Nature | Forest green accents evoke growth and truth |
+| Readability | Serif body text (Merriweather) for long-form |
+| Authority | Sans-serif headings (Montserrat) for clarity |
+| Softness | Rounded corners (8-12px) throughout |
 
 ---
 
 ## Color Palette
 
-### Stone (Base/Neutral)
+### Cream (Base/Neutral)
 
-Warm gray with subtle yellow-brown undertones.
+Warm, paper-like tones with subtle yellow-brown undertones.
 
-| Shade | HSL | OKLCH | Hex | Use |
-|-------|-----|-------|-----|-----|
-| 50 | `60 9.1% 97.8%` | `oklch(0.98 0.00 106)` | `#fafaf9` | Backgrounds (light) |
-| 100 | `60 4.8% 95.9%` | `oklch(0.97 0.00 106)` | `#f5f5f4` | Subtle backgrounds |
-| 200 | `20 5.9% 90%` | `oklch(0.92 0.00 49)` | `#e7e5e4` | Borders, dividers |
-| 300 | `24 5.7% 82.9%` | `oklch(0.87 0.00 56)` | `#d6d3d1` | Disabled states |
-| 400 | `24 5.4% 63.9%` | `oklch(0.72 0.01 56)` | `#a8a29e` | Placeholder text |
-| 500 | `25 5.3% 44.7%` | `oklch(0.55 0.01 58)` | `#78716c` | Secondary text |
-| 600 | `33.3 5.5% 32.4%` | `oklch(0.44 0.01 74)` | `#57534e` | Body text (dark) |
-| 700 | `30 6.3% 25.1%` | `oklch(0.37 0.01 68)` | `#44403c` | Headings (dark) |
-| 800 | `12 6.5% 15.1%` | `oklch(0.27 0.01 34)` | `#292524` | Backgrounds (dark) |
-| 900 | `24 9.8% 10%` | `oklch(0.22 0.01 56)` | `#1c1917` | Deep backgrounds |
-| 950 | `20 14.3% 4.1%` | `oklch(0.15 0.00 49)` | `#0c0a09` | True dark |
+| Shade | HSL | Hex | Use |
+|-------|-----|-----|-----|
+| 50 | `40 33% 99%` | `#fdfcfa` | Light backgrounds |
+| 100 | `38 33% 97%` | `#faf8f5` | Subtle backgrounds |
+| 200 | `35 30% 94%` | `#f5f1eb` | Card backgrounds |
+| 300 | `33 28% 89%` | `#ebe5db` | Borders, dividers |
+| 400 | `32 22% 80%` | `#d6cdc0` | Disabled states |
+| 500 | `30 15% 67%` | `#b8ad9e` | Placeholder text |
+| 600 | `28 12% 51%` | `#8f8377` | Secondary text |
+| 700 | `26 12% 38%` | `#6b6156` | Body text |
+| 800 | `24 14% 25%` | `#4a4239` | Headings |
+| 900 | `28 18% 15%` | `#2d2821` | Deep backgrounds (dark) |
+| 950 | `30 20% 8%` | `#1a1612` | True dark |
 
-### Emerald (Accent/Primary)
+### Forest Green (Accent/Primary)
 
-Vibrant green for primary actions, success states, and focus indicators.
+Deep, nature-inspired greens for primary actions and focus indicators.
 
-| Shade | HSL | OKLCH | Hex | Use |
-|-------|-----|-------|-----|-----|
-| 50 | `151.8 81% 95.9%` | `oklch(0.979 0.021 166)` | `#ecfdf5` | Success bg (light) |
-| 100 | `149.3 80.4% 90%` | `oklch(0.95 0.052 163)` | `#d0fae5` | Hover states |
-| 200 | `152.4 76% 80.4%` | `oklch(0.905 0.093 164)` | `#a4f4cf` | Light accents |
-| 300 | `156.2 71.6% 66.9%` | `oklch(0.845 0.143 165)` | `#5ee9b5` | Decorative |
-| 400 | `158.1 64.4% 51.6%` | `oklch(0.765 0.177 163)` | `#00d492` | Interactive (hover) |
-| 500 | `160.1 84.1% 39.4%` | `oklch(0.696 0.17 162)` | `#00bc7d` | **Primary actions** |
-| 600 | `161.4 93.5% 30.4%` | `oklch(0.596 0.145 163)` | `#009966` | Primary (pressed) |
-| 700 | `162.9 93.5% 24.3%` | `oklch(0.508 0.118 166)` | `#007a55` | Dark mode primary |
-| 800 | `163.1 88.1% 19.8%` | `oklch(0.432 0.095 167)` | `#006045` | Deep accent |
-| 900 | `164.2 85.7% 16.5%` | `oklch(0.378 0.077 169)` | `#004f3b` | Borders (dark) |
-| 950 | `165.7 91.3% 9%` | `oklch(0.262 0.051 173)` | `#002c22` | Darkest accent |
+| Shade | HSL | Hex | Use |
+|-------|-----|-----|-----|
+| 50 | `152 81% 97%` | `#f0fdf6` | Success bg (light) |
+| 100 | `147 77% 93%` | `#dcfce8` | Hover states |
+| 200 | `150 73% 85%` | `#bbf7d4` | Light accents |
+| 300 | `155 55% 70%` | `#89ddb4` | Decorative, ring color |
+| 400 | `142 69% 58%` | `#4ade80` | Interactive (hover) |
+| 500 | `142 71% 45%` | `#22c55e` | Primary actions |
+| 600 | `142 76% 36%` | `#16a34a` | Primary (pressed) |
+| 700 | `156 44% 18%` | `#1a4332` | **Primary dark** |
+| 800 | `155 51% 20%` | `#14532d` | Deep accent |
+| 900 | `154 59% 15%` | `#0f3d22` | Borders (dark) |
+| 950 | `145 75% 10%` | `#052e16` | Darkest accent |
 
 ---
 
 ## CSS Variables
-
-### Tailwind CSS v4 (OKLCH)
-
-```css
-@import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap');
-
-@theme inline {
-  --font-sans: "JetBrains Mono", ui-monospace, monospace;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --radius: 0;
-  --radius-sm: 0;
-  --radius-md: 0;
-  --radius-lg: 0;
-  --radius-xl: 0;
-}
-
-@layer base {
-  :root {
-    /* Stone base - Light mode */
-    --background: oklch(0.98 0.00 106);
-    --foreground: oklch(0.15 0.00 49);
-
-    --card: oklch(0.98 0.00 106);
-    --card-foreground: oklch(0.15 0.00 49);
-
-    --popover: oklch(0.98 0.00 106);
-    --popover-foreground: oklch(0.15 0.00 49);
-
-    /* Emerald primary */
-    --primary: oklch(0.696 0.17 162);
-    --primary-foreground: oklch(0.98 0.00 106);
-
-    --secondary: oklch(0.92 0.00 49);
-    --secondary-foreground: oklch(0.22 0.01 56);
-
-    --muted: oklch(0.92 0.00 49);
-    --muted-foreground: oklch(0.55 0.01 58);
-
-    --accent: oklch(0.905 0.093 164);
-    --accent-foreground: oklch(0.22 0.01 56);
-
-    --destructive: oklch(0.577 0.245 27.325);
-    --destructive-foreground: oklch(0.98 0.00 106);
-
-    --border: oklch(0.87 0.00 56);
-    --input: oklch(0.87 0.00 56);
-    --ring: oklch(0.696 0.17 162);
-
-    /* Chart colors */
-    --chart-1: oklch(0.696 0.17 162);
-    --chart-2: oklch(0.596 0.145 163);
-    --chart-3: oklch(0.508 0.118 166);
-    --chart-4: oklch(0.765 0.177 163);
-    --chart-5: oklch(0.845 0.143 165);
-  }
-
-  .dark {
-    /* Stone base - Dark mode */
-    --background: oklch(0.15 0.00 49);
-    --foreground: oklch(0.98 0.00 106);
-
-    --card: oklch(0.22 0.01 56);
-    --card-foreground: oklch(0.98 0.00 106);
-
-    --popover: oklch(0.22 0.01 56);
-    --popover-foreground: oklch(0.98 0.00 106);
-
-    /* Emerald primary (adjusted for dark) */
-    --primary: oklch(0.696 0.17 162);
-    --primary-foreground: oklch(0.15 0.00 49);
-
-    --secondary: oklch(0.27 0.01 34);
-    --secondary-foreground: oklch(0.98 0.00 106);
-
-    --muted: oklch(0.27 0.01 34);
-    --muted-foreground: oklch(0.72 0.01 56);
-
-    --accent: oklch(0.378 0.077 169);
-    --accent-foreground: oklch(0.98 0.00 106);
-
-    --destructive: oklch(0.577 0.245 27.325);
-    --destructive-foreground: oklch(0.98 0.00 106);
-
-    --border: oklch(0.37 0.01 68);
-    --input: oklch(0.37 0.01 68);
-    --ring: oklch(0.696 0.17 162);
-
-    /* Chart colors - dark mode */
-    --chart-1: oklch(0.765 0.177 163);
-    --chart-2: oklch(0.696 0.17 162);
-    --chart-3: oklch(0.596 0.145 163);
-    --chart-4: oklch(0.845 0.143 165);
-    --chart-5: oklch(0.508 0.118 166);
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
-}
-```
 
 ### Tailwind CSS v3 (HSL)
 
@@ -190,73 +83,187 @@ Vibrant green for primary actions, success states, and focus indicators.
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap');
-
 @layer base {
   :root {
-    /* Stone base - Light mode */
-    --background: 60 9.1% 97.8%;
-    --foreground: 20 14.3% 4.1%;
+    /* Cream base - Light mode */
+    --background: 40 33% 99%;
+    --foreground: 24 14% 25%;
 
-    --card: 60 9.1% 97.8%;
-    --card-foreground: 20 14.3% 4.1%;
+    --card: 35 30% 94%;
+    --card-foreground: 24 14% 25%;
 
-    --popover: 60 9.1% 97.8%;
-    --popover-foreground: 20 14.3% 4.1%;
+    --popover: 40 33% 99%;
+    --popover-foreground: 24 14% 25%;
 
-    /* Emerald primary */
-    --primary: 160.1 84.1% 39.4%;
-    --primary-foreground: 60 9.1% 97.8%;
+    /* Forest green primary */
+    --primary: 156 44% 18%;
+    --primary-foreground: 40 33% 99%;
 
-    --secondary: 20 5.9% 90%;
-    --secondary-foreground: 24 9.8% 10%;
+    --secondary: 35 30% 94%;
+    --secondary-foreground: 26 12% 38%;
 
-    --muted: 20 5.9% 90%;
-    --muted-foreground: 25 5.3% 44.7%;
+    --muted: 33 28% 89%;
+    --muted-foreground: 28 12% 51%;
 
-    --accent: 152.4 76% 80.4%;
-    --accent-foreground: 24 9.8% 10%;
+    --accent: 155 55% 70%;
+    --accent-foreground: 156 44% 18%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 60 9.1% 97.8%;
+    --destructive-foreground: 40 33% 99%;
 
-    --border: 24 5.7% 82.9%;
-    --input: 24 5.7% 82.9%;
-    --ring: 160.1 84.1% 39.4%;
+    --border: 33 28% 89%;
+    --input: 33 28% 89%;
+    --ring: 155 55% 70%;
 
-    --radius: 0;
+    --radius: 0.5rem;
+
+    /* Chart colors */
+    --chart-1: 156 44% 18%;
+    --chart-2: 142 76% 36%;
+    --chart-3: 142 71% 45%;
+    --chart-4: 155 55% 70%;
+    --chart-5: 155 51% 20%;
   }
 
   .dark {
-    /* Stone base - Dark mode */
-    --background: 20 14.3% 4.1%;
-    --foreground: 60 9.1% 97.8%;
+    /* Cream/Forest base - Dark mode */
+    --background: 28 18% 15%;
+    --foreground: 38 33% 97%;
 
-    --card: 24 9.8% 10%;
-    --card-foreground: 60 9.1% 97.8%;
+    --card: 30 20% 8%;
+    --card-foreground: 38 33% 97%;
 
-    --popover: 24 9.8% 10%;
-    --popover-foreground: 60 9.1% 97.8%;
+    --popover: 30 20% 8%;
+    --popover-foreground: 38 33% 97%;
 
-    /* Emerald primary */
-    --primary: 160.1 84.1% 39.4%;
-    --primary-foreground: 20 14.3% 4.1%;
+    /* Forest green primary (lighter for dark mode) */
+    --primary: 155 55% 70%;
+    --primary-foreground: 28 18% 15%;
 
-    --secondary: 12 6.5% 15.1%;
-    --secondary-foreground: 60 9.1% 97.8%;
+    --secondary: 24 14% 25%;
+    --secondary-foreground: 38 33% 97%;
 
-    --muted: 12 6.5% 15.1%;
-    --muted-foreground: 24 5.4% 63.9%;
+    --muted: 24 14% 25%;
+    --muted-foreground: 30 15% 67%;
 
-    --accent: 164.2 85.7% 16.5%;
-    --accent-foreground: 60 9.1% 97.8%;
+    --accent: 156 44% 18%;
+    --accent-foreground: 38 33% 97%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 60 9.1% 97.8%;
+    --destructive-foreground: 38 33% 97%;
 
-    --border: 30 6.3% 25.1%;
-    --input: 30 6.3% 25.1%;
-    --ring: 160.1 84.1% 39.4%;
+    --border: 26 12% 38%;
+    --input: 26 12% 38%;
+    --ring: 155 55% 70%;
+
+    /* Chart colors - dark mode */
+    --chart-1: 155 55% 70%;
+    --chart-2: 156 44% 18%;
+    --chart-3: 142 76% 36%;
+    --chart-4: 150 73% 85%;
+    --chart-5: 155 51% 20%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans;
+  }
+}
+```
+
+### Tailwind CSS v4 (OKLCH)
+
+```css
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
+
+@theme inline {
+  --font-sans: "Montserrat", system-ui, sans-serif;
+  --font-serif: "Merriweather", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --radius: 0.5rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+}
+
+@layer base {
+  :root {
+    /* Cream base - Light mode */
+    --background: oklch(0.99 0.005 90);
+    --foreground: oklch(0.36 0.022 55);
+
+    --card: oklch(0.96 0.012 80);
+    --card-foreground: oklch(0.36 0.022 55);
+
+    --popover: oklch(0.99 0.005 90);
+    --popover-foreground: oklch(0.36 0.022 55);
+
+    /* Forest green primary */
+    --primary: oklch(0.36 0.06 165);
+    --primary-foreground: oklch(0.99 0.005 90);
+
+    --secondary: oklch(0.96 0.012 80);
+    --secondary-foreground: oklch(0.48 0.025 60);
+
+    --muted: oklch(0.93 0.018 75);
+    --muted-foreground: oklch(0.60 0.025 65);
+
+    --accent: oklch(0.83 0.11 162);
+    --accent-foreground: oklch(0.36 0.06 165);
+
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: oklch(0.99 0.005 90);
+
+    --border: oklch(0.93 0.018 75);
+    --input: oklch(0.93 0.018 75);
+    --ring: oklch(0.83 0.11 162);
+
+    /* Chart colors */
+    --chart-1: oklch(0.36 0.06 165);
+    --chart-2: oklch(0.63 0.15 155);
+    --chart-3: oklch(0.72 0.17 152);
+    --chart-4: oklch(0.83 0.11 162);
+    --chart-5: oklch(0.40 0.07 160);
+  }
+
+  .dark {
+    /* Dark mode */
+    --background: oklch(0.26 0.020 55);
+    --foreground: oklch(0.98 0.008 85);
+
+    --card: oklch(0.18 0.015 50);
+    --card-foreground: oklch(0.98 0.008 85);
+
+    --popover: oklch(0.18 0.015 50);
+    --popover-foreground: oklch(0.98 0.008 85);
+
+    --primary: oklch(0.83 0.11 162);
+    --primary-foreground: oklch(0.26 0.020 55);
+
+    --secondary: oklch(0.36 0.022 55);
+    --secondary-foreground: oklch(0.98 0.008 85);
+
+    --muted: oklch(0.36 0.022 55);
+    --muted-foreground: oklch(0.74 0.025 70);
+
+    --accent: oklch(0.36 0.06 165);
+    --accent-foreground: oklch(0.98 0.008 85);
+
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: oklch(0.98 0.008 85);
+
+    --border: oklch(0.48 0.025 60);
+    --input: oklch(0.48 0.025 60);
+    --ring: oklch(0.83 0.11 162);
   }
 }
 
@@ -266,7 +273,10 @@ Vibrant green for primary actions, success states, and focus indicators.
   }
   body {
     @apply bg-background text-foreground;
-    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-family: var(--font-serif);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
   }
 }
 ```
@@ -275,44 +285,51 @@ Vibrant green for primary actions, success states, and focus indicators.
 
 ## Typography
 
-### Font: JetBrains Mono
+### Font Families
 
-A typeface designed for developers. Increased height for better readability, distinctive letter shapes, and programming ligatures.
+- **Headings**: Montserrat (500-700 weight) - modern, geometric, authoritative
+- **Body**: Merriweather (400-700 weight) - highly readable serif, editorial feel
+- **Monospace**: JetBrains Mono (for code blocks)
 
 ```css
-font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+font-family: "Montserrat", system-ui, sans-serif;  /* headings */
+font-family: "Merriweather", Georgia, serif;        /* body */
+font-family: "JetBrains Mono", ui-monospace, monospace; /* code */
 ```
 
-### Scale (Mira - Compact)
+### Scale (Veritas - Comfortable Reading)
 
-| Name | Size | Line Height | Weight | Use |
-|------|------|-------------|--------|-----|
-| `xs` | 11px / 0.6875rem | 1.4 | 400 | Labels, captions |
-| `sm` | 12px / 0.75rem | 1.5 | 400 | Secondary text, metadata |
-| `base` | 13px / 0.8125rem | 1.5 | 400 | Body text |
-| `lg` | 14px / 0.875rem | 1.5 | 500 | Emphasis, subheadings |
-| `xl` | 16px / 1rem | 1.4 | 600 | Section headings |
-| `2xl` | 18px / 1.125rem | 1.3 | 600 | Page headings |
-| `3xl` | 22px / 1.375rem | 1.2 | 700 | Hero text |
+| Name | Size | Line Height | Font | Weight | Use |
+|------|------|-------------|------|--------|-----|
+| `xs` | 12px / 0.75rem | 1.5 | Merriweather | 400 | Captions, metadata |
+| `sm` | 14px / 0.875rem | 1.6 | Merriweather | 400 | Secondary text |
+| `base` | 16px / 1rem | 1.7 | Merriweather | 400 | Body text |
+| `lg` | 18px / 1.125rem | 1.6 | Merriweather | 400 | Lead paragraphs |
+| `xl` | 20px / 1.25rem | 1.4 | Montserrat | 500 | Section headings |
+| `2xl` | 24px / 1.5rem | 1.3 | Montserrat | 600 | Page headings |
+| `3xl` | 30px / 1.875rem | 1.2 | Montserrat | 700 | Hero text |
+| `4xl` | 36px / 2.25rem | 1.1 | Montserrat | 700 | Display |
 
 ### Tailwind Typography Config
 
 ```js
-// tailwind.config.js (v3)
+// tailwind.config.js
 module.exports = {
   theme: {
     fontFamily: {
-      sans: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+      sans: ['Montserrat', 'system-ui', 'sans-serif'],
+      serif: ['Merriweather', 'Georgia', 'serif'],
       mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
     },
     fontSize: {
-      xs: ['0.6875rem', { lineHeight: '1.4' }],
-      sm: ['0.75rem', { lineHeight: '1.5' }],
-      base: ['0.8125rem', { lineHeight: '1.5' }],
-      lg: ['0.875rem', { lineHeight: '1.5' }],
-      xl: ['1rem', { lineHeight: '1.4' }],
-      '2xl': ['1.125rem', { lineHeight: '1.3' }],
-      '3xl': ['1.375rem', { lineHeight: '1.2' }],
+      xs: ['0.75rem', { lineHeight: '1.5' }],
+      sm: ['0.875rem', { lineHeight: '1.6' }],
+      base: ['1rem', { lineHeight: '1.7' }],
+      lg: ['1.125rem', { lineHeight: '1.6' }],
+      xl: ['1.25rem', { lineHeight: '1.4' }],
+      '2xl': ['1.5rem', { lineHeight: '1.3' }],
+      '3xl': ['1.875rem', { lineHeight: '1.2' }],
+      '4xl': ['2.25rem', { lineHeight: '1.1' }],
     },
   },
 }
@@ -320,63 +337,74 @@ module.exports = {
 
 ---
 
-## Spacing (Mira - Compact)
+## Spacing (Veritas - Comfortable)
 
-Dense spacing for information-rich interfaces.
+Editorial spacing for readable, breathing layouts.
 
 | Token | Value | Use |
 |-------|-------|-----|
-| `0.5` | 2px | Micro gaps |
-| `1` | 4px | Inline spacing, icon gaps |
-| `1.5` | 6px | Tight component padding |
-| `2` | 8px | Default component padding |
-| `3` | 12px | Section gaps |
-| `4` | 16px | Card padding |
-| `6` | 24px | Section padding |
-| `8` | 32px | Large gaps |
+| `1` | 4px | Micro gaps |
+| `2` | 8px | Inline spacing, icon gaps |
+| `3` | 12px | Tight component padding |
+| `4` | 16px | Default component padding |
+| `5` | 20px | Section gaps |
+| `6` | 24px | Card padding |
+| `8` | 32px | Section padding |
+| `10` | 40px | Large gaps |
 
 ### Component Spacing Guidelines
 
 ```
-Button padding:    px-2 py-1     (8px 4px)
-Input padding:     px-2 py-1.5   (8px 6px)
-Card padding:      p-3           (12px)
-Modal padding:     p-4           (16px)
-Section gap:       gap-3         (12px)
-Form field gap:    gap-2         (8px)
+Button padding:    px-4 py-2     (16px 8px)
+Input padding:     px-4 py-2.5   (16px 10px)
+Card padding:      p-5 or p-6    (20-24px)
+Modal padding:     p-6           (24px)
+Section gap:       gap-6         (24px)
+Form field gap:    gap-4         (16px)
 ```
 
 ---
 
 ## Border Radius
 
-**None**. Sharp corners throughout for a technical, precise aesthetic.
+Soft, rounded corners throughout for an organic feel.
+
+| Token | Value | Use |
+|-------|-------|-----|
+| `sm` | 6px / 0.375rem | Small buttons, badges |
+| `DEFAULT` | 8px / 0.5rem | Inputs, standard buttons |
+| `md` | 10px / 0.625rem | Cards, modals |
+| `lg` | 12px / 0.75rem | Large containers |
+| `xl` | 16px / 1rem | Hero sections |
+| `full` | 9999px | Pills, avatars |
 
 ```css
---radius: 0;
---radius-sm: 0;
---radius-md: 0;
---radius-lg: 0;
---radius-xl: 0;
+--radius: 0.5rem;
+--radius-sm: 0.375rem;
+--radius-md: 0.625rem;
+--radius-lg: 0.75rem;
+--radius-xl: 1rem;
 ```
-
-All components use `rounded-none` or no border-radius styling.
 
 ---
 
 ## Shadows
 
-Minimal shadows. The Mira style relies on borders and background contrast rather than elevation.
+Subtle, green-tinted shadows for gentle depth.
 
 ```css
-/* Subtle shadow for popovers/dropdowns only */
---shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
---shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+/* Light mode */
+--shadow-sm: 0 1px 2px 0 rgb(26 67 50 / 0.05);
+--shadow: 0 2px 4px 0 rgb(26 67 50 / 0.08), 0 1px 2px -1px rgb(26 67 50 / 0.05);
+--shadow-md: 0 4px 6px -1px rgb(26 67 50 / 0.08), 0 2px 4px -2px rgb(26 67 50 / 0.05);
+--shadow-lg: 0 10px 15px -3px rgb(26 67 50 / 0.08), 0 4px 6px -4px rgb(26 67 50 / 0.05);
 
-/* Dark mode - even more subtle */
+/* Dark mode */
 .dark {
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4);
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+  --shadow: 0 2px 4px 0 rgb(0 0 0 / 0.25), 0 1px 2px -1px rgb(0 0 0 / 0.15);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.25), 0 2px 4px -2px rgb(0 0 0 / 0.15);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.2);
 }
 ```
 
@@ -395,12 +423,12 @@ pnpm add lucide-react
 ```tsx
 import { Check, X, ChevronDown, Settings, User } from "lucide-react"
 
-// Default size for Mira style
-<Check className="h-3.5 w-3.5" />
+// Default size for Veritas style
+<Check className="h-4 w-4" />
 
 // In buttons
 <Button>
-  <Settings className="h-3.5 w-3.5 mr-1.5" />
+  <Settings className="h-4 w-4 mr-2" />
   Settings
 </Button>
 ```
@@ -409,10 +437,10 @@ import { Check, X, ChevronDown, Settings, User } from "lucide-react"
 
 | Context | Size | Class |
 |---------|------|-------|
-| Inline with text | 14px | `h-3.5 w-3.5` |
-| Button icon | 14px | `h-3.5 w-3.5` |
-| Standalone | 16px | `h-4 w-4` |
-| Large/Hero | 20px | `h-5 w-5` |
+| Inline with text | 16px | `h-4 w-4` |
+| Button icon | 16px | `h-4 w-4` |
+| Standalone | 20px | `h-5 w-5` |
+| Large/Hero | 24px | `h-6 w-6` |
 
 ---
 
@@ -422,27 +450,27 @@ import { Check, X, ChevronDown, Settings, User } from "lucide-react"
 
 ```tsx
 // Primary
-<button className="inline-flex items-center justify-center px-2 py-1 text-sm font-medium bg-primary text-primary-foreground hover:bg-emerald-600 active:bg-emerald-700 border-0 rounded-none transition-colors disabled:opacity-50 disabled:pointer-events-none">
+<button className="inline-flex items-center justify-center px-4 py-2 text-sm font-sans font-medium bg-primary text-primary-foreground hover:bg-[hsl(142_76%_36%)] active:bg-[hsl(155_51%_20%)] rounded-lg shadow-sm transition-all hover:shadow disabled:opacity-50 disabled:pointer-events-none">
   Button
 </button>
 
 // Secondary
-<button className="inline-flex items-center justify-center px-2 py-1 text-sm font-medium bg-secondary text-secondary-foreground hover:bg-stone-300 dark:hover:bg-stone-700 border border-border rounded-none transition-colors">
+<button className="inline-flex items-center justify-center px-4 py-2 text-sm font-sans font-medium bg-secondary text-secondary-foreground hover:bg-[hsl(33_28%_85%)] border border-border rounded-lg transition-colors">
   Button
 </button>
 
 // Outline
-<button className="inline-flex items-center justify-center px-2 py-1 text-sm font-medium bg-transparent text-foreground hover:bg-accent border border-border rounded-none transition-colors">
+<button className="inline-flex items-center justify-center px-4 py-2 text-sm font-sans font-medium bg-transparent text-foreground hover:bg-accent border border-border rounded-lg transition-colors">
   Button
 </button>
 
 // Ghost
-<button className="inline-flex items-center justify-center px-2 py-1 text-sm font-medium bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground rounded-none transition-colors">
+<button className="inline-flex items-center justify-center px-4 py-2 text-sm font-sans font-medium bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground rounded-lg transition-colors">
   Button
 </button>
 
 // Destructive
-<button className="inline-flex items-center justify-center px-2 py-1 text-sm font-medium bg-destructive text-destructive-foreground hover:bg-red-600 rounded-none transition-colors">
+<button className="inline-flex items-center justify-center px-4 py-2 text-sm font-sans font-medium bg-destructive text-destructive-foreground hover:bg-red-600 rounded-lg shadow-sm transition-colors">
   Delete
 </button>
 ```
@@ -452,7 +480,7 @@ import { Check, X, ChevronDown, Settings, User } from "lucide-react"
 ```tsx
 <input
   type="text"
-  className="flex h-8 w-full px-2 py-1.5 text-sm bg-background text-foreground border border-input rounded-none placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:opacity-50 disabled:cursor-not-allowed"
+  className="flex h-10 w-full px-4 py-2.5 text-base font-serif bg-background text-foreground border border-input rounded-lg placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
   placeholder="Enter text..."
 />
 ```
@@ -460,7 +488,7 @@ import { Check, X, ChevronDown, Settings, User } from "lucide-react"
 ### Select
 
 ```tsx
-<select className="flex h-8 w-full px-2 py-1.5 text-sm bg-background text-foreground border border-input rounded-none focus:outline-none focus:ring-1 focus:ring-ring appearance-none cursor-pointer">
+<select className="flex h-10 w-full px-4 py-2.5 text-base font-serif bg-background text-foreground border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-ring appearance-none cursor-pointer">
   <option>Option 1</option>
   <option>Option 2</option>
 </select>
@@ -469,9 +497,9 @@ import { Check, X, ChevronDown, Settings, User } from "lucide-react"
 ### Card
 
 ```tsx
-<div className="bg-card text-card-foreground border border-border rounded-none p-3">
-  <h3 className="text-lg font-semibold mb-2">Card Title</h3>
-  <p className="text-sm text-muted-foreground">Card content goes here.</p>
+<div className="bg-card text-card-foreground border border-border rounded-xl p-6 shadow-sm">
+  <h3 className="text-xl font-sans font-semibold mb-3">Card Title</h3>
+  <p className="text-base text-muted-foreground">Card content goes here.</p>
 </div>
 ```
 
@@ -479,17 +507,17 @@ import { Check, X, ChevronDown, Settings, User } from "lucide-react"
 
 ```tsx
 // Default
-<span className="inline-flex items-center px-1.5 py-0.5 text-xs font-medium bg-secondary text-secondary-foreground rounded-none">
+<span className="inline-flex items-center px-2.5 py-1 text-xs font-sans font-medium bg-secondary text-secondary-foreground rounded-full">
   Badge
 </span>
 
 // Primary
-<span className="inline-flex items-center px-1.5 py-0.5 text-xs font-medium bg-primary text-primary-foreground rounded-none">
+<span className="inline-flex items-center px-2.5 py-1 text-xs font-sans font-medium bg-primary text-primary-foreground rounded-full">
   New
 </span>
 
 // Outline
-<span className="inline-flex items-center px-1.5 py-0.5 text-xs font-medium bg-transparent text-foreground border border-border rounded-none">
+<span className="inline-flex items-center px-2.5 py-1 text-xs font-sans font-medium bg-transparent text-foreground border border-border rounded-full">
   Draft
 </span>
 ```
@@ -497,17 +525,17 @@ import { Check, X, ChevronDown, Settings, User } from "lucide-react"
 ### Table
 
 ```tsx
-<table className="w-full text-sm">
+<table className="w-full text-base font-serif">
   <thead>
     <tr className="border-b border-border">
-      <th className="h-8 px-2 text-left font-medium text-muted-foreground">Header</th>
-      <th className="h-8 px-2 text-left font-medium text-muted-foreground">Header</th>
+      <th className="h-12 px-4 text-left font-sans font-medium text-muted-foreground">Header</th>
+      <th className="h-12 px-4 text-left font-sans font-medium text-muted-foreground">Header</th>
     </tr>
   </thead>
   <tbody>
     <tr className="border-b border-border hover:bg-muted/50 transition-colors">
-      <td className="h-8 px-2">Cell</td>
-      <td className="h-8 px-2">Cell</td>
+      <td className="h-12 px-4">Cell</td>
+      <td className="h-12 px-4">Cell</td>
     </tr>
   </tbody>
 </table>
@@ -516,15 +544,15 @@ import { Check, X, ChevronDown, Settings, User } from "lucide-react"
 ### Form Field
 
 ```tsx
-<div className="space-y-1.5">
-  <label className="text-xs font-medium text-foreground">
+<div className="space-y-2">
+  <label className="text-sm font-sans font-medium text-foreground">
     Label
   </label>
   <input
     type="text"
-    className="flex h-8 w-full px-2 py-1.5 text-sm bg-background border border-input rounded-none placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring"
+    className="flex h-10 w-full px-4 py-2.5 text-base font-serif bg-background border border-input rounded-lg placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
   />
-  <p className="text-xs text-muted-foreground">
+  <p className="text-sm text-muted-foreground">
     Helper text goes here.
   </p>
 </div>
@@ -534,29 +562,29 @@ import { Check, X, ChevronDown, Settings, User } from "lucide-react"
 
 ```tsx
 // Default
-<div className="flex gap-2 p-3 border border-border bg-background text-foreground rounded-none">
-  <Info className="h-4 w-4 mt-0.5 shrink-0" />
+<div className="flex gap-3 p-4 border border-border bg-background text-foreground rounded-lg">
+  <Info className="h-5 w-5 mt-0.5 shrink-0" />
   <div>
-    <h5 className="text-sm font-medium">Heads up!</h5>
-    <p className="text-xs text-muted-foreground mt-0.5">Alert message here.</p>
+    <h5 className="text-base font-sans font-medium">Heads up!</h5>
+    <p className="text-sm text-muted-foreground mt-1">Alert message here.</p>
   </div>
 </div>
 
-// Success (using emerald)
-<div className="flex gap-2 p-3 border border-emerald-500/50 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-900 dark:text-emerald-100 rounded-none">
-  <CheckCircle className="h-4 w-4 mt-0.5 shrink-0" />
+// Success (using forest green)
+<div className="flex gap-3 p-4 border border-[hsl(155_55%_70%)] bg-[hsl(152_81%_97%)] text-[hsl(156_44%_18%)] rounded-lg">
+  <CheckCircle className="h-5 w-5 mt-0.5 shrink-0" />
   <div>
-    <h5 className="text-sm font-medium">Success!</h5>
-    <p className="text-xs opacity-80 mt-0.5">Operation completed.</p>
+    <h5 className="text-base font-sans font-medium">Success!</h5>
+    <p className="text-sm opacity-80 mt-1">Operation completed.</p>
   </div>
 </div>
 
 // Destructive
-<div className="flex gap-2 p-3 border border-red-500/50 bg-red-50 dark:bg-red-950/50 text-red-900 dark:text-red-100 rounded-none">
-  <AlertCircle className="h-4 w-4 mt-0.5 shrink-0" />
+<div className="flex gap-3 p-4 border border-red-300 bg-red-50 dark:bg-red-950/50 text-red-900 dark:text-red-100 rounded-lg">
+  <AlertCircle className="h-5 w-5 mt-0.5 shrink-0" />
   <div>
-    <h5 className="text-sm font-medium">Error</h5>
-    <p className="text-xs opacity-80 mt-0.5">Something went wrong.</p>
+    <h5 className="text-base font-sans font-medium">Error</h5>
+    <p className="text-sm opacity-80 mt-1">Something went wrong.</p>
   </div>
 </div>
 ```
@@ -583,13 +611,13 @@ import { ThemeProvider } from 'next-themes'
 
 | Token | Light | Dark |
 |-------|-------|------|
-| `background` | Stone 50 | Stone 950 |
-| `foreground` | Stone 950 | Stone 50 |
-| `card` | Stone 50 | Stone 900 |
-| `muted` | Stone 200 | Stone 800 |
-| `border` | Stone 300 | Stone 700 |
-| `primary` | Emerald 500 | Emerald 500 |
-| `accent` | Emerald 200 | Emerald 900 |
+| `background` | Cream 50 | Cream 900 |
+| `foreground` | Cream 800 | Cream 100 |
+| `card` | Cream 200 | Cream 950 |
+| `muted` | Cream 300 | Cream 800 |
+| `border` | Cream 300 | Cream 700 |
+| `primary` | Forest 700 | Forest 300 |
+| `accent` | Forest 300 | Forest 700 |
 
 ---
 
@@ -599,37 +627,49 @@ When prompting Claude or other LLMs, include this context:
 
 ```
 Use my style guide:
-- Mira style: compact, dense, sharp corners (radius: 0)
-- Stone grays for neutrals (warm undertone)
-- Emerald for primary/accent colors
-- JetBrains Mono font throughout
-- Lucide icons, 14px default size
-- Tight spacing: px-2 py-1 for buttons, p-3 for cards
-- Minimal shadows, rely on borders for definition
+- Veritas style: organic, editorial, nature-inspired
+- Cream/beige for neutrals (warm paper-like tones)
+- Forest green for primary/accent colors (#1a4332 dark, #89ddb4 light)
+- Montserrat for headings, Merriweather (serif) for body
+- Lucide icons, 16px default size
+- Rounded corners: 8px default, 12px for cards
+- Comfortable spacing: px-4 py-2 for buttons, p-6 for cards
+- Subtle green-tinted shadows for depth
 ```
 
 ---
 
 ## Tailwind Config (Complete)
 
-### v4
-
 ```js
-// tailwind.config.ts (if needed alongside CSS)
+// tailwind.config.js
+/** @type {import('tailwindcss').Config} */
 export default {
   darkMode: 'class',
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    fontFamily: {
+      sans: ['Montserrat', 'system-ui', 'sans-serif'],
+      serif: ['Merriweather', 'Georgia', 'serif'],
+      mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+    },
+    fontSize: {
+      xs: ['0.75rem', { lineHeight: '1.5' }],
+      sm: ['0.875rem', { lineHeight: '1.6' }],
+      base: ['1rem', { lineHeight: '1.7' }],
+      lg: ['1.125rem', { lineHeight: '1.6' }],
+      xl: ['1.25rem', { lineHeight: '1.4' }],
+      '2xl': ['1.5rem', { lineHeight: '1.3' }],
+      '3xl': ['1.875rem', { lineHeight: '1.2' }],
+      '4xl': ['2.25rem', { lineHeight: '1.1' }],
+    },
     extend: {
-      fontFamily: {
-        sans: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-      },
       borderRadius: {
-        DEFAULT: '0',
-        sm: '0',
-        md: '0',
-        lg: '0',
-        xl: '0',
+        DEFAULT: '0.5rem',
+        sm: '0.375rem',
+        md: '0.625rem',
+        lg: '0.75rem',
+        xl: '1rem',
       },
       colors: {
         border: 'hsl(var(--border))',
@@ -668,6 +708,7 @@ export default {
       },
     },
   },
+  plugins: [],
 }
 ```
 
@@ -677,11 +718,11 @@ export default {
 
 When setting up a new project:
 
-- [ ] Install JetBrains Mono font
+- [ ] Add Google Fonts link for Montserrat, Merriweather, JetBrains Mono
 - [ ] Install lucide-react icons
 - [ ] Copy CSS variables to globals.css
 - [ ] Update tailwind.config with theme extensions
-- [ ] Set `border-radius` overrides to 0
+- [ ] Set `border-radius` values (8px default)
 - [ ] Configure dark mode (`class` strategy)
 - [ ] Copy component patterns as needed
 
@@ -692,5 +733,7 @@ When setting up a new project:
 - [shadcn/ui Theming](https://ui.shadcn.com/docs/theming)
 - [shadcn/ui Colors](https://ui.shadcn.com/colors)
 - [Tailwind CSS Colors](https://tailwindcss.com/docs/colors)
-- [JetBrains Mono](https://www.jetbrains.com/lp/mono/)
+- [Google Fonts - Montserrat](https://fonts.google.com/specimen/Montserrat)
+- [Google Fonts - Merriweather](https://fonts.google.com/specimen/Merriweather)
 - [Lucide Icons](https://lucide.dev/)
+- [The Divinity School](https://www.endemic.org/the-divinity-school/home) - Design inspiration
