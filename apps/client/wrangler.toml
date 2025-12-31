@@ -1,8 +1,19 @@
 name = "writing-scorecard"
+main = "src/worker.ts"
 compatibility_date = "2024-12-01"
 
 [assets]
 directory = "./dist"
+binding = "ASSETS"
+
+# Service binding to the API worker
+[[services]]
+binding = "API"
+service = "writing-scorecard-api"
 
 [env.production]
 name = "writing-scorecard"
+
+[[env.production.services]]
+binding = "API"
+service = "writing-scorecard-api"
