@@ -25,7 +25,12 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebFetch(domain:ai-sdk.dev)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "WebFetch(domain:www.endemic.org)",
+      "Bash(find:*)",
+      "WebFetch(domain:thedivinityschool.com)",
+      "Bash(bd sync:*)",
+      "Bash(xargs ls:*)"
     ]
   }
 }
