@@ -149,7 +149,7 @@ writingScorecard/
 - [ ] Deploy both to Cloudflare (Workers Static Assets + Worker)
 - [ ] Configure Cloudflare Access for protection
 
-### Phase 2: Streaming
+### Phase 2: Streaming -- CEDRIC CONT
 **Goal**: Real-time scorecard generation with progress feedback
 
 - [ ] Implement SSE streaming from API Worker using AI SDK `streamText`
