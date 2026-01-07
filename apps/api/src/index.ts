@@ -37,19 +37,19 @@ export default {
     }
 
     try {
-      // Route handling
-      if (url.pathname === '/api/health') {
+      // Route handling (paths without /api prefix - client worker strips it)
+      if (url.pathname === '/health') {
         return addCorsHeaders(
           Response.json({ status: 'ok', environment: env.ENVIRONMENT })
         );
       }
 
-      if (url.pathname === '/api/evaluate' && request.method === 'POST') {
+      if (url.pathname === '/evaluate' && request.method === 'POST') {
         const response = await handleEvaluate(request, env);
         return addCorsHeaders(response);
       }
 
-      if (url.pathname.startsWith('/api/results/') && request.method === 'GET') {
+      if (url.pathname.startsWith('/results/') && request.method === 'GET') {
         // TODO: Implement in persistence phase
         return addCorsHeaders(
           Response.json(
