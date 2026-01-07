@@ -26,6 +26,9 @@ jobs:
       - name: Build shared package
         run: pnpm --filter @fast/shared build
 
+      - name: Generate Wrangler types
+        run: cd apps/client && pnpm exec wrangler types --experimental-include-runtime
+
       - name: Type check
         run: pnpm typecheck
 
