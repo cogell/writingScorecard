@@ -9,6 +9,7 @@ build/
 # Cloudflare
 .wrangler/
 .dev.vars
+worker-configuration.d.ts
 
 # Environment variables
 .env
