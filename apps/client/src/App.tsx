@@ -34,11 +34,6 @@ export default function App() {
           </div>
         )}
 
-        <footer className="mt-6 text-center text-xs text-muted-foreground">
-          <p>
-            Scores are calibrated: final = max(0, provisional - 1.5)
-          </p>
-        </footer>
       </main>
     </div>
   );
