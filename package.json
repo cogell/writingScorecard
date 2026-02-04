@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "pnpm --filter @fast/shared build && pnpm --filter @fast/client --filter @fast/api --parallel run dev",
+    "dev": "pnpm --filter @fast/shared build && pnpm --filter @fast/client run dev",
     "dev:client": "pnpm --filter @fast/client dev",
     "dev:api": "pnpm --filter @fast/api dev",
     "build": "pnpm -r run build",

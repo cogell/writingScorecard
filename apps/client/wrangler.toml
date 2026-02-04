@@ -14,11 +14,6 @@ database_name = "writing-scorecard-auth"
 database_id = "c963136a-9e69-4275-842a-fdf2ca9538c2"
 migrations_dir = "migrations"
 
-# Service binding to the API worker
-[[services]]
-binding = "API"
-service = "writing-scorecard-api"
-
 [env.production]
 name = "writing-scorecard"
 
@@ -27,7 +22,3 @@ binding = "DB"
 database_name = "writing-scorecard-auth"
 database_id = "c963136a-9e69-4275-842a-fdf2ca9538c2"
 migrations_dir = "migrations"
-
-[[env.production.services]]
-binding = "API"
-service = "writing-scorecard-api"

@@ -1,6 +1,9 @@
 # BetterAuth secret (generate with: openssl rand -hex 32)
-BETTER_AUTH_SECRET=
+BETTER_AUTH_SECRET=ac99f734f769d4fe58daf87acc20f03756f40f2fd8a71de72694953d1a33d674
 
 # Resend email service (https://resend.com)
-RESEND_API_KEY=
-RESEND_FROM_EMAIL=noreply@yourdomain.com
+RESEND_API_KEY=re_cNgY9Tts_GhtEp44qxoeowNPjBNQccqgh
+RESEND_FROM_EMAIL=fast-ontoedit-ai@cogell.com
+
+# Anthropic API key for text evaluation
+ANTHROPIC_API_KEY=sk-ant-...
