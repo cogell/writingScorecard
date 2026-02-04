@@ -98,6 +98,7 @@ Browser receives response
 - Handles `POST /api/evaluate` and `GET /api/health` directly (no proxy or service binding)
 - Uses Cloudflare's `ASSETS` binding for static file serving
 - Uses `DB` D1 binding for auth database
+- Sends admin notification emails on new user signup via BetterAuth `databaseHooks.user.create.after` (fire-and-forget; failures are logged but never break the auth flow)
 
 ---
 
@@ -144,6 +145,7 @@ The `generateObject()` function from Vercel's AI SDK enforces the Zod schema on 
 | `RESEND_FROM_NAME` | Secret / `.dev.vars` (optional) | Sender display name (defaults to app name) |
 | `BETTER_AUTH_URL` | Secret / `.dev.vars` (optional) | Base URL override for BetterAuth |
 | `ANTHROPIC_API_KEY` | Secret / `.dev.vars` | Claude API authentication |
+| `ADMIN_NOTIFY_EMAILS` | Secret / `.dev.vars` (optional) | Comma-separated admin emails to notify on new user signup |
 
 ### Local Development
 

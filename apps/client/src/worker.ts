@@ -12,6 +12,7 @@ interface Env {
   RESEND_FROM_NAME?: string;
   BETTER_AUTH_URL?: string;
   ANTHROPIC_API_KEY: string;
+  ADMIN_NOTIFY_EMAILS?: string;
 }
 
 export default {

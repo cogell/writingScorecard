@@ -24,6 +24,7 @@ The current state of the application. Core evaluation loop works end-to-end with
 - GitHub Actions CI/CD pipeline
 - Error handling for validation, API failures, and network errors
 - User email display and sign-out in header
+- **Admin email notification** on new user signup (via Resend, configurable with `ADMIN_NOTIFY_EMAILS`)
 
 ### What's not built yet
 - No persistence for scorecards (evaluations are ephemeral; D1 is only used for auth)
