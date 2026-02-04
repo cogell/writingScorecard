@@ -11,8 +11,7 @@
   },
   "references": [
     { "path": "./packages/shared" },
-    { "path": "./apps/client" },
-    { "path": "./apps/api" }
+    { "path": "./apps/client" }
   ],
   "files": []
 }
