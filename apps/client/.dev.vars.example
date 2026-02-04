@@ -7,3 +7,6 @@ RESEND_FROM_EMAIL=fast-ontoedit-ai@cogell.com
 
 # Anthropic API key for text evaluation
 ANTHROPIC_API_KEY=sk-ant-...
+
+# (Optional) Comma-separated admin emails to notify on new user signup
+# ADMIN_NOTIFY_EMAILS=admin@example.com,another@example.com
