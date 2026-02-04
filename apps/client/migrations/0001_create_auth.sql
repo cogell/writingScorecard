@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS "user" (
   "email" TEXT NOT NULL UNIQUE,
   "email_verified" INTEGER NOT NULL DEFAULT 0,
   "image" TEXT,
+  "role" TEXT DEFAULT 'user',
   "created_at" INTEGER NOT NULL DEFAULT (cast(unixepoch('subsecond') * 1000 as integer)),
   "updated_at" INTEGER NOT NULL DEFAULT (cast(unixepoch('subsecond') * 1000 as integer))
 );

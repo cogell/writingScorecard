@@ -1,0 +1,6 @@
+# BetterAuth secret (generate with: openssl rand -hex 32)
+BETTER_AUTH_SECRET=
+
+# Resend email service (https://resend.com)
+RESEND_API_KEY=
+RESEND_FROM_EMAIL=noreply@yourdomain.com

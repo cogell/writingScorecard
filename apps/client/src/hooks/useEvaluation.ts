@@ -15,6 +15,7 @@ export function useEvaluation() {
       const response = await fetch('/api/evaluate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ text, title }),
       });
 

@@ -1,17 +1,18 @@
 name = "writing-scorecard"
 main = "src/worker.ts"
 compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
 
 [assets]
 directory = "./dist"
 binding = "ASSETS"
 
 # D1 Database for auth
-# Create with: wrangler d1 create writing-scorecard-auth
 [[d1_databases]]
 binding = "DB"
 database_name = "writing-scorecard-auth"
-database_id = "placeholder-will-be-generated"
+database_id = "c963136a-9e69-4275-842a-fdf2ca9538c2"
+migrations_dir = "migrations"
 
 # Service binding to the API worker
 [[services]]
@@ -24,7 +25,8 @@ name = "writing-scorecard"
 [[env.production.d1_databases]]
 binding = "DB"
 database_name = "writing-scorecard-auth"
-database_id = "placeholder-will-be-generated"
+database_id = "c963136a-9e69-4275-842a-fdf2ca9538c2"
+migrations_dir = "migrations"
 
 [[env.production.services]]
 binding = "API"

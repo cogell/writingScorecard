@@ -59,6 +59,19 @@ export function createAuth(env: AuthEnv, request: Request) {
     baseURL,
     secret: env.BETTER_AUTH_SECRET,
     database: drizzleAdapter(db, { provider: 'sqlite', schema }),
+    trustedOrigins: [
+      'http://localhost:5173',
+      'http://localhost:8787',
+    ],
+    user: {
+      additionalFields: {
+        role: {
+          type: 'string',
+          defaultValue: 'user',
+          input: false,
+        },
+      },
+    },
     plugins: [
       magicLink({
         sendMagicLink: async ({ email, url }) => {
