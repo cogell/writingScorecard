@@ -1,5 +1,5 @@
-import type { Scorecard as ScorecardType, CriterionScore } from '@fast/shared';
-import { CRITERION_LABELS, CRITERION_DESCRIPTIONS } from '@fast/shared';
+import type { Scorecard as ScorecardType, CriterionScore } from '../shared';
+import { CRITERION_LABELS, CRITERION_DESCRIPTIONS } from '../shared';
 
 interface ScorecardProps {
   scorecard: ScorecardType;

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { Scorecard, ApiError } from '@fast/shared';
+import type { Scorecard, ApiError } from '../shared';
 
 export function useEvaluation() {
   const [scorecard, setScorecard] = useState<Scorecard | null>(null);

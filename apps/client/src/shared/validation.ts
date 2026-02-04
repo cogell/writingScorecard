@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { CRITERIA } from './types.js';
-import { MIN_TEXT_LENGTH, MAX_TEXT_LENGTH } from './constants.js';
+import { CRITERIA } from './types';
+import { MIN_TEXT_LENGTH, MAX_TEXT_LENGTH } from './constants';
 
 export const evaluationRequestSchema = z.object({
   text: z

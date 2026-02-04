@@ -1,4 +1,4 @@
-import type { Criterion } from './types.js';
+import type { Criterion } from './types';
 
 export const CRITERION_LABELS: Record<Criterion, string> = {
   clarity: 'Clarity',

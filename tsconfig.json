@@ -10,7 +10,6 @@
     "declarationMap": true
   },
   "references": [
-    { "path": "./packages/shared" },
     { "path": "./apps/client" }
   ],
   "files": []

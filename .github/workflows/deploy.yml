@@ -23,9 +23,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build shared package
-        run: pnpm --filter @fast/shared build
-
       - name: Generate Wrangler types
         run: cd apps/client && pnpm exec wrangler types
 

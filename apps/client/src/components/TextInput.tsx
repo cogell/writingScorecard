@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MIN_TEXT_LENGTH, MAX_TEXT_LENGTH } from '@fast/shared';
+import { MIN_TEXT_LENGTH, MAX_TEXT_LENGTH } from '../shared';
 
 interface TextInputProps {
   onSubmit: (text: string, title?: string) => void;

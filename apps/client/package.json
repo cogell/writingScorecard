@@ -13,11 +13,11 @@
     "deploy": "wrangler deploy",
     "clean": "rm -rf dist .wrangler",
     "db:migrate:local": "wrangler d1 migrations apply writing-scorecard-auth --local",
-    "db:migrate:remote": "wrangler d1 migrations apply writing-scorecard-auth --remote"
+    "db:migrate:remote": "wrangler d1 migrations apply writing-scorecard-auth --remote",
+    "secrets:push": "grep -v '^#' .dev.vars | grep . | while IFS='=' read -r key value; do printf '%s' \"$value\" | wrangler secret put \"$key\"; done"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^1.1.6",
-    "@fast/shared": "workspace:*",
     "ai": "^4.1.16",
     "better-auth": "^1.4.18",
     "drizzle-orm": "^0.45.1",

@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "pnpm --filter @fast/shared build && pnpm --filter @fast/client run dev",
+    "dev": "pnpm --filter @fast/client run dev",
     "dev:client": "pnpm --filter @fast/client dev",
     "build": "pnpm -r run build",
     "typecheck": "pnpm -r run typecheck",

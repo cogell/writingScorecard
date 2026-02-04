@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { evaluationRequestSchema, type Scorecard } from '@fast/shared';
+import { evaluationRequestSchema, type Scorecard } from '../shared';
 import { evaluateText } from '../services/scoring';
 
 export async function handleEvaluate(

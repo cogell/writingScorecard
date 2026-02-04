@@ -1,4 +1,3 @@
-// Types
 export {
   CRITERIA,
   type Criterion,
@@ -9,9 +8,8 @@ export {
   type EvaluationStreamEvent,
   type ApiError,
   type ApiErrorCode,
-} from './types.js';
+} from './types';
 
-// Constants and utilities
 export {
   CRITERION_LABELS,
   CRITERION_DESCRIPTIONS,
@@ -23,9 +21,8 @@ export {
   calibrateScore,
   calculateOverallScore,
   calculateCost,
-} from './constants.js';
+} from './constants';
 
-// Validation schemas
 export {
   evaluationRequestSchema,
   updateScorecardRequestSchema,
@@ -35,4 +32,4 @@ export {
   apiErrorCodeSchema,
   type EvaluationRequestInput,
   type ScorecardResponseInput,
-} from './validation.js';
+} from './validation';

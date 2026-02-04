@@ -8,7 +8,7 @@ import {
   CRITERIA,
   type CriterionScore,
   type ModelId,
-} from "@fast/shared";
+} from "../shared";
 import { SCORING_PROMPT } from "./prompts";
 
 const MODEL: ModelId = "claude-haiku-4-5";
