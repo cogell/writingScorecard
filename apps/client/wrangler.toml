@@ -6,6 +6,13 @@ compatibility_date = "2024-12-01"
 directory = "./dist"
 binding = "ASSETS"
 
+# D1 Database for auth
+# Create with: wrangler d1 create writing-scorecard-auth
+[[d1_databases]]
+binding = "DB"
+database_name = "writing-scorecard-auth"
+database_id = "placeholder-will-be-generated"
+
 # Service binding to the API worker
 [[services]]
 binding = "API"
@@ -13,6 +20,11 @@ service = "writing-scorecard-api"
 
 [env.production]
 name = "writing-scorecard"
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "writing-scorecard-auth"
+database_id = "placeholder-will-be-generated"
 
 [[env.production.services]]
 binding = "API"
