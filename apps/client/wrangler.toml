@@ -13,12 +13,3 @@ binding = "DB"
 database_name = "writing-scorecard-auth"
 database_id = "c963136a-9e69-4275-842a-fdf2ca9538c2"
 migrations_dir = "migrations"
-
-[env.production]
-name = "writing-scorecard"
-
-[[env.production.d1_databases]]
-binding = "DB"
-database_name = "writing-scorecard-auth"
-database_id = "c963136a-9e69-4275-842a-fdf2ca9538c2"
-migrations_dir = "migrations"

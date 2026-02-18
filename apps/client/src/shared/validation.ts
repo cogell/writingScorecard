@@ -1,6 +1,8 @@
 import { z } from 'zod';
-import { CRITERIA } from './types';
-import { MIN_TEXT_LENGTH, MAX_TEXT_LENGTH } from './constants';
+import { CRITERIA } from './types.ts';
+import { MIN_TEXT_LENGTH, MAX_TEXT_LENGTH } from './constants.ts';
+
+const nonEmptyString = z.string().trim().min(1);
 
 export const evaluationRequestSchema = z.object({
   text: z
@@ -16,15 +18,27 @@ export const updateScorecardRequestSchema = z.object({
 
 export const criterionScoreSchema = z.object({
   criterion: z.enum(CRITERIA),
-  provisionalScore: z.number().min(0).max(10),
-  note: z.string(),
+  score: z.number().min(0).max(10),
+  evaluation: nonEmptyString,
+  suggestion: nonEmptyString,
 });
 
-export const scorecardResponseSchema = z.object({
-  title: z.string(),
+export const scorecardContentSchema = z.object({
+  // Analysis-first ordering nudges grounded scoring in structured output mode.
+  coreThesis: nonEmptyString,
+  keyTerms: z.array(nonEmptyString).min(3).max(10),
+
+  // Scorecard
+  title: nonEmptyString,
   scores: z.array(criterionScoreSchema).length(5),
-  summary: z.string(),
+  summary: nonEmptyString,
+
+  // Diagnostics
+  contextSufficiency: z.enum(['low', 'medium', 'high']),
+  rhetoricRisk: z.enum(['low', 'medium', 'high']),
 });
+
+export const scorecardResponseSchema = scorecardContentSchema;
 
 export const apiErrorCodeSchema = z.enum([
   'VALIDATION_ERROR',

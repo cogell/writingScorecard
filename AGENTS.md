@@ -2,6 +2,14 @@
 
 This project uses **bd** (beads) for issue tracking. Run `bd onboard` to get started.
 
+## Development Process
+
+See [spec-driven-development.md](./spec-driven-development.md) for how specs, plans, and beads fit together. Key points:
+
+- **Specs** (`specs/`) are the source of truth. Update them before writing code.
+- **Plans** (`plans/`) are scratch work for exploration. Delete them after the feature ships and specs are updated.
+- **Beads** are created from the gap between current specs and reality.
+
 ## Style Guide
 
 See [STYLE_GUIDE.md](./STYLE_GUIDE.md) for design system details (colors, typography, spacing, components).

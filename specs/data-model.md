@@ -4,11 +4,11 @@
 
 ---
 
-All types, constants, and validation schemas live in the shared package: `packages/shared/src/`.
+All types, constants, and validation schemas live in `apps/client/src/shared/`.
 
 ## Core Types
 
-Source: `packages/shared/src/types.ts`
+Source: `apps/client/src/shared/types.ts`
 
 ### Criterion
 
@@ -19,8 +19,8 @@ type Criterion =
   | 'clarity'
   | 'simplexity'
   | 'errorCorrection'
-  | 'unityScope'
-  | 'pragmaticReturn';
+  | 'unity'
+  | 'pragmaticExperience';
 ```
 
 ### CriterionScore
@@ -30,9 +30,9 @@ A single criterion's evaluation result.
 ```typescript
 interface CriterionScore {
   criterion: Criterion;
-  provisionalScore: number;   // 0-10, raw score from LLM
-  calibratedScore: number;    // max(0, provisional - 1.5)
-  note: string;               // 1-sentence explanation specific to the text
+  score: number;              // 0-10, from LLM (no calibration offset)
+  evaluation: string;         // 1 sentence: what the text does on this criterion, citing text features
+  suggestion: string;         // 1 sentence: single most impactful concrete edit
 }
 ```
 
@@ -44,12 +44,24 @@ The complete evaluation output returned to the client.
 interface Scorecard {
   id: string;                 // nanoid(10)
   createdAt: Date;            // ISO 8601 timestamp
+
+  // Analysis (LLM "shows its work" — grounds scoring in text analysis)
+  coreThesis: string;         // 1-2 sentences: evaluator's read of the central claim
+  keyTerms: string[];         // 3-10 terms doing conceptual work in the text
+
+  // Scorecard
   title: string;              // User-provided or LLM-inferred
   inputText: string;          // Original submitted text
   wordCount: number;          // Whitespace-split count
-  overallScore: number;       // Average of calibrated scores (1 decimal)
+  overallScore: number;       // Arithmetic mean of 5 scores (1 decimal)
   scores: CriterionScore[];   // Array of exactly 5 scores
-  summary: string;            // 2-3 sentence assessment
+  summary: string;            // 2-3 sentences: strongest, weakest, biggest lever
+
+  // Diagnostics
+  contextSufficiency: 'low' | 'medium' | 'high';
+  rhetoricRisk: 'low' | 'medium' | 'high';
+
+  // Metadata
   modelUsed: string;          // e.g., "claude-haiku-4-5"
   processingTimeMs: number;   // Wall-clock evaluation time
   inputTokens: number;        // Prompt tokens consumed
@@ -98,9 +110,9 @@ type ApiErrorCode =
 
 ## Validation Schemas
 
-Source: `packages/shared/src/validation.ts`
+Source: `apps/client/src/shared/validation.ts`
 
-Built with [Zod](https://zod.dev). Used on both the API (request validation) and in the AI SDK call (response schema enforcement).
+Built with [Zod](https://zod.dev). Used on both the API (request validation) and in the AI SDK call (response schema enforcement via `generateObject()`).
 
 ### evaluationRequestSchema
 
@@ -119,21 +131,31 @@ Validates individual criterion scores in the LLM response.
 
 ```typescript
 z.object({
-  criterion: z.enum(['clarity', 'simplexity', 'errorCorrection', 'unityScope', 'pragmaticReturn']),
-  provisionalScore: z.number().min(0).max(10),
-  note: z.string(),
+  criterion: z.enum(['clarity', 'simplexity', 'errorCorrection', 'unity', 'pragmaticExperience']),
+  score: z.number().min(0).max(10),
+  evaluation: z.string(),
+  suggestion: z.string(),
 })
 ```
 
 ### scorecardResponseSchema
 
-The schema passed to `generateObject()` -- tells the LLM what structure to output.
+The schema passed to `generateObject()` — tells the LLM what structure to output. Field ordering matters: `coreThesis` and `keyTerms` come first to force the LLM to analyze before scoring (chain-of-thought in structured output).
 
 ```typescript
 z.object({
+  // Analysis (populated before scores — forces grounded evaluation)
+  coreThesis: z.string(),
+  keyTerms: z.array(z.string()).min(3).max(10),
+
+  // Scorecard
   title: z.string(),
   scores: z.array(criterionScoreSchema).length(5),
   summary: z.string(),
+
+  // Diagnostics
+  contextSufficiency: z.enum(['low', 'medium', 'high']),
+  rhetoricRisk: z.enum(['low', 'medium', 'high']),
 })
 ```
 
@@ -154,7 +176,7 @@ z.object({
 
 ## Constants
 
-Source: `packages/shared/src/constants.ts`
+Source: `apps/client/src/shared/constants.ts`
 
 ### Scoring
 
@@ -162,16 +184,20 @@ Source: `packages/shared/src/constants.ts`
 |----------|-------|---------|
 | `MIN_TEXT_LENGTH` | 100 | Minimum characters for evaluation |
 | `MAX_TEXT_LENGTH` | 50,000 | Maximum characters for evaluation |
-| `CALIBRATION_OFFSET` | 1.5 | Subtracted from all provisional scores |
 
 ### Criterion metadata
 
 ```typescript
 CRITERION_LABELS: Record<Criterion, string>
-// e.g., { clarity: 'Clarity', simplexity: 'Simplexity', ... }
+// { clarity: 'Clarity', simplexity: 'Simplexity', errorCorrection: 'Error Correction',
+//   unity: 'Unity', pragmaticExperience: 'Pragmatic / Experience' }
 
 CRITERION_DESCRIPTIONS: Record<Criterion, string>
-// e.g., { clarity: 'Precise language, clean definitions...', ... }
+// { clarity: 'Precision in language, clean definitions, sharp reasoning',
+//   simplexity: 'Captures essence without reduction; releases complexity without deleting it',
+//   errorCorrection: 'Corrects errors within/across disciplines; checks contradictions; self-repair',
+//   unity: 'Expands capacity to say more with less; integrates without flattening',
+//   pragmaticExperience: 'Returns to lived experience; "contact" is part of proof' }
 ```
 
 ### Model pricing
@@ -189,9 +215,10 @@ MODEL_PRICING = {
 
 | Function | Signature | Purpose |
 |----------|-----------|---------|
-| `calibrateScore` | `(provisional: number) => number` | `max(0, provisional - 1.5)` |
-| `calculateOverallScore` | `(calibrated: number[]) => number` | Average, rounded to 1 decimal |
+| `calculateOverallScore` | `(scores: number[]) => number` | Arithmetic mean, rounded to 1 decimal |
 | `calculateCost` | `(modelId, inputTokens, outputTokens) => number` | Cost in USD |
+
+Removed: `calibrateScore()` and `CALIBRATION_OFFSET` — no longer needed with the rich FAST v1.0 rubric.
 
 ---
 
@@ -268,20 +295,3 @@ Index: `verification_identifier_idx` on `identifier`
 - `user` → `session` (one-to-many)
 - `user` → `account` (one-to-many)
 - `session.user_id` and `account.user_id` cascade on user deletion
-
----
-
-## Shared Package Structure
-
-```
-packages/shared/
-  src/
-    index.ts          # Re-exports everything
-    types.ts          # TypeScript interfaces and type aliases
-    constants.ts      # Scoring constants, labels, pricing, helper functions
-    validation.ts     # Zod schemas
-  package.json        # @fast/shared
-  tsconfig.json
-```
-
-The shared package is consumed by `apps/client` via pnpm workspace references.

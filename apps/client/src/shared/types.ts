@@ -2,28 +2,43 @@ export const CRITERIA = [
   'clarity',
   'simplexity',
   'errorCorrection',
-  'unityScope',
-  'pragmaticReturn',
+  'unity',
+  'pragmaticExperience',
 ] as const;
 
 export type Criterion = (typeof CRITERIA)[number];
 
+export type ContextSufficiency = 'low' | 'medium' | 'high';
+export type RhetoricRisk = 'low' | 'medium' | 'high';
+
 export interface CriterionScore {
   criterion: Criterion;
-  provisionalScore: number; // 0-10, from LLM
-  calibratedScore: number; // max(0, provisional - 1.5)
-  note: string;
+  score: number; // 0-10, direct from LLM (no calibration offset)
+  evaluation: string;
+  suggestion: string;
 }
 
 export interface Scorecard {
   id: string;
   createdAt: Date;
+
+  // Analysis
+  coreThesis: string;
+  keyTerms: string[];
+
+  // Scorecard
   title: string;
   inputText: string; // Original submitted text
   wordCount: number;
-  overallScore: number; // Average of calibrated scores
+  overallScore: number; // Average of direct criterion scores
   scores: CriterionScore[];
   summary: string;
+
+  // Diagnostics
+  contextSufficiency: ContextSufficiency;
+  rhetoricRisk: RhetoricRisk;
+
+  // Metadata
   modelUsed: string;
   processingTimeMs: number;
   inputTokens: number;
