@@ -30,7 +30,16 @@
       "Bash(find:*)",
       "WebFetch(domain:thedivinityschool.com)",
       "Bash(bd sync:*)",
-      "Bash(xargs ls:*)"
+      "Bash(xargs ls:*)",
+      "Bash(git pull:*)",
+      "Bash(git stash:*)",
+      "Bash(bd --no-db sync:*)",
+      "Bash(bd migrate:*)",
+      "Bash(rm:*)",
+      "Bash(pnpm exec wrangler deploy:*)",
+      "Bash(git checkout:*)",
+      "Bash(pnpm exec wrangler:*)",
+      "Bash(git check-ignore:*)"
     ]
   }
 }

@@ -101,7 +101,8 @@ export function createAuth(env: AuthEnv, request: Request) {
     database: drizzleAdapter(db, { provider: 'sqlite', schema }),
     trustedOrigins: [
       'http://localhost:5173',
-      'http://localhost:8787',
+      'http://localhost:5174',
+      'http://localhost:8792',
     ],
     user: {
       additionalFields: {

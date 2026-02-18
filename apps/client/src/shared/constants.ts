@@ -1,30 +1,26 @@
-import type { Criterion } from './types';
+import type { Criterion } from './types.ts';
 
 export const CRITERION_LABELS: Record<Criterion, string> = {
   clarity: 'Clarity',
   simplexity: 'Simplexity',
   errorCorrection: 'Error Correction',
-  unityScope: 'Unity/Scope',
-  pragmaticReturn: 'Pragmatic Return',
+  unity: 'Unity',
+  pragmaticExperience: 'Pragmatic / Experience',
 };
 
 export const CRITERION_DESCRIPTIONS: Record<Criterion, string> = {
-  clarity:
-    'Precise language, clean definitions, explicit scope. Does the text say exactly what it means?',
+  clarity: 'Precision in language, clean definitions, sharp reasoning',
   simplexity:
-    'Captures essence while preserving necessary complexity. Finds the simplest formulation without losing nuance.',
+    'Captures essence without reduction; releases complexity without deleting it',
   errorCorrection:
-    'Detects contradictions, acknowledges limitations. Does the text catch its own potential errors?',
-  unityScope:
-    'High conceptual leverage, wide applicability without vagueness. Does the idea apply broadly while remaining specific?',
-  pragmaticReturn:
-    'Operational hooks, concrete implications, testable. Can you DO something with this idea?',
+    'Corrects errors within/across disciplines; checks contradictions; self-repair',
+  unity: 'Expands capacity to say more with less; integrates without flattening',
+  pragmaticExperience:
+    'Returns to lived experience; "contact" is part of proof',
 };
 
 export const MIN_TEXT_LENGTH = 100;
 export const MAX_TEXT_LENGTH = 50000;
-
-export const CALIBRATION_OFFSET = 1.5;
 
 // Claude Haiku 4.5 pricing (USD per million tokens)
 // Source: https://platform.claude.com/docs/en/about-claude/pricing
@@ -52,18 +48,10 @@ export function calculateCost(
 }
 
 /**
- * Apply calibration to a provisional score.
- * Formula: max(0, provisionalScore - 1.5)
+ * Calculate overall score as average of direct criterion scores.
  */
-export function calibrateScore(provisionalScore: number): number {
-  return Math.max(0, provisionalScore - CALIBRATION_OFFSET);
-}
-
-/**
- * Calculate overall score as average of calibrated scores.
- */
-export function calculateOverallScore(calibratedScores: number[]): number {
-  if (calibratedScores.length === 0) return 0;
-  const sum = calibratedScores.reduce((a, b) => a + b, 0);
-  return Math.round((sum / calibratedScores.length) * 10) / 10;
+export function calculateOverallScore(scores: number[]): number {
+  if (scores.length === 0) return 0;
+  const sum = scores.reduce((a, b) => a + b, 0);
+  return Math.round((sum / scores.length) * 10) / 10;
 }
