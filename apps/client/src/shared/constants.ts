@@ -29,6 +29,10 @@ export const MODEL_PRICING = {
     inputPricePerMTok: 1.0, // $1.00 per million input tokens
     outputPricePerMTok: 5.0, // $5.00 per million output tokens
   },
+  'claude-sonnet-4-6': {
+    inputPricePerMTok: 3.0, // $3.00 per million input tokens
+    outputPricePerMTok: 15.0, // $15.00 per million output tokens
+  },
 } as const;
 
 export type ModelId = keyof typeof MODEL_PRICING;

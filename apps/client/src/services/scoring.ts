@@ -15,7 +15,7 @@ import {
 } from '../shared/index.ts';
 import { SCORING_PROMPT } from './prompts.ts';
 
-const MODEL: ModelId = 'claude-sonnet-4-6';
+const MODEL: ModelId = 'claude-haiku-4-5';
 const CACHE_TTL_MS = 30 * 60 * 1000;
 const CACHE_MAX_ENTRIES = 128;
 
