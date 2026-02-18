@@ -113,21 +113,19 @@ evaluateText(text, title, env)
   | 2. Start timer
   | 3. Call generateObject():
   |      model: claude-haiku-4-5
-  |      system: SCORING_PROMPT (from prompts.ts)
+  |      system: SCORING_PROMPT (FAST v1.0 full rubric from prompts.ts)
   |      prompt: "Evaluate the following text:\n\n{title}\n{text}"
   |      schema: scorecardResponseSchema
-  | 4. Parse structured response
-  | 5. For each of 5 criteria:
-  |      calibratedScore = max(0, provisionalScore - 1.5)
-  | 6. overallScore = avg(calibratedScores), rounded to 1 decimal
-  | 7. Calculate cost from token usage
-  | 8. Assemble Scorecard object with metadata
+  | 4. Parse structured response (coreThesis, keyTerms, scores, summary, diagnostics)
+  | 5. overallScore = avg(scores), rounded to 1 decimal (no calibration offset)
+  | 6. Calculate cost from token usage
+  | 7. Assemble Scorecard object with metadata
   |
   v
 Return Scorecard
 ```
 
-The `generateObject()` function from Vercel's AI SDK enforces the Zod schema on the LLM output, guaranteeing structured JSON with exactly 5 criterion scores, a title, and a summary.
+The `generateObject()` function from Vercel's AI SDK enforces the Zod schema on the LLM output, guaranteeing structured JSON with: `coreThesis` and `keyTerms` (chain-of-thought analysis), exactly 5 criterion scores with `evaluation` + `suggestion` per criterion, a summary, and diagnostic flags (`contextSufficiency`, `rhetoricRisk`). Field ordering in the schema places analysis fields before scores to encourage grounded evaluation.
 
 ---
 

@@ -17,7 +17,7 @@ The current state of the application. Core evaluation loop works end-to-end with
 - **Drizzle ORM** for database schema and queries
 - API endpoint (`POST /api/evaluate`) with Zod validation
 - Claude integration via Vercel AI SDK (`generateObject`)
-- 5-criterion scoring with calibration formula
+- 5-criterion scoring (simple rubric, calibration offset)
 - Scorecard display with raw/calibrated scores, color coding, and metadata
 - Shared types package (`@fast/shared`)
 - Veritas design system (cream + forest green, Montserrat/Merriweather)
@@ -33,6 +33,37 @@ The current state of the application. Core evaluation loop works end-to-end with
 - No streaming feedback
 - No rate limiting
 - No dark mode toggle (variables defined but no UI control)
+
+---
+
+## Phase 1.5: FAST v1.0 Prompt & Output — In Progress
+
+Upgrade the system prompt to the full FAST v1.0 rubric and reshape the evaluation output.
+
+### Planned changes
+- **System prompt**: Replace simple rubric with full FAST v1.0 (Primary, Secondary, Tertiary rubrics + Supporting Considerations per criterion)
+- **Remove calibration offset**: No more `-1.5` mechanical adjustment. The rich rubric + aggressive scoring guidance provide sufficient discipline.
+- **Rename criteria**: `unityScope` → `unity`, `pragmaticReturn` → `pragmaticExperience`. Labels and descriptions updated to match FAST Instructions.
+- **Chain-of-thought in structured output**: Add `coreThesis` and `keyTerms` fields to the schema, populated before scores. Forces the LLM to analyze the text before judging it.
+- **Per-criterion output**: Replace single `note` with `evaluation` (1 sentence citing text features) + `suggestion` (1 sentence concrete edit).
+- **Summary**: Must include strongest dimension, weakest dimension, single biggest lever for improvement.
+- **Diagnostics**: Add `contextSufficiency` (low/medium/high) and `rhetoricRisk` (low/medium/high) to output.
+- **UI**: Show core thesis + key terms, evaluation + suggestion per criterion (2 sentences max), diagnostic badges, static re-score notice.
+
+### Files to change
+| File | Change |
+|------|--------|
+| `shared/types.ts` | Rename criteria, replace `note` → `evaluation` + `suggestion`, remove calibration fields, add analysis + diagnostics |
+| `shared/validation.ts` | Update `criterionScoreSchema` and `scorecardResponseSchema` |
+| `shared/constants.ts` | Remove `CALIBRATION_OFFSET`, `calibrateScore()`. Update labels/descriptions. |
+| `services/prompts.ts` | Full rewrite — FAST v1.0 system prompt |
+| `services/scoring.ts` | Map new LLM output fields; remove calibration logic |
+| `routes/evaluate.ts` | Include new fields in API response |
+| `components/Scorecard.tsx` | New layout: analysis section, evaluation + suggestion per criterion, diagnostic badges, re-score notice |
+
+### Tracking
+- Cockpit card: `t-2b43b184`
+- Branch: `feat/fast-v1-prompt-output`
 
 ---
 
@@ -102,7 +133,7 @@ Production hardening and UX improvements.
 - Analytics and metrics (submission volume, processing time, error rates)
 - Loading skeletons during evaluation
 - Mobile-responsive layout
-- Landing page copy (explaining FAST, criteria, calibration)
+- Landing page copy (explaining FAST, criteria, scoring philosophy)
 - Criteria explanation modals (click a criterion name to learn more)
 
 ---

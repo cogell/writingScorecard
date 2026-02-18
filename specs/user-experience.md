@@ -145,36 +145,62 @@ Shown after successful evaluation.
 
 ```
 +-----------------------------------------------+
-|  FAST Writing Scorecard                        |
+|  [Title of Text]                 [ 7.2 / 10 ] |
+|  1,234 words · evaluated in 2.4s              |
 +-----------------------------------------------+
-|  [Title of Text]              [ 7.2 / 10 ]    |
-|  1,234 words  *  evaluated in 2.4s             |
+|  Core thesis                                   |
+|  "The text argues that conceptual writing      |
+|  requires both compression and contact."       |
+|                                                |
+|  simplexity · error correction · contact ·     |
+|  compression · falsifiability                  |
 +-----------------------------------------------+
 |  Summary                                       |
-|  This text demonstrates strong conceptual      |
-|  clarity with well-defined terms and...        |
+|  Strongest in Clarity — terms are defined...   |
+|  Weakest in Pragmatic/Experience — claims...   |
+|  Biggest lever: add contact tests for the...   |
 +-----------------------------------------------+
 |                                                |
-|  Clarity                              7.2      |
-|  Precise language and explicit scope     (8.7) |
+|  Clarity                                    7  |
+|  Key terms are defined and scoped, but         |
+|  'emergence' shifts meaning between §2 and §5. |
+|  → Pin 'emergence' with a scope clause:        |
+|    emergence-of-what, at-which-level.          |
 |                                                |
-|  Simplexity                           6.1      |
-|  Good balance of compression...          (7.6) |
+|  Simplexity                                 6  |
+|  Good compression of the core model, but       |
+|  section 3 adds machinery without payoff.      |
+|  → Cut the secondary taxonomy or show how it   |
+|    generates predictions the core alone can't. |
 |                                                |
-|  Error Correction                     5.8      |
-|  Acknowledges some limitations...        (7.3) |
+|  Error Correction                           5  |
+|  Acknowledges the reductionism objection but   |
+|  doesn't resolve it — hand-waves with "beyond."|
+|  → State what would falsify the central claim; |
+|    name one failure mode explicitly.           |
 |                                                |
-|  Unity/Scope                          4.5      |
-|  Scope is somewhat narrow...             (6.0) |
+|  Unity                                      5  |
+|  A unifying lens exists but strains when       |
+|  applied to the biological examples in §4.     |
+|  → Make the cross-domain mapping explicit:     |
+|    what corresponds to what, and where it      |
+|    breaks.                                     |
 |                                                |
-|  Pragmatic Return                     6.3      |
-|  Offers actionable implications...       (7.8) |
+|  Pragmatic / Experience                     4  |
+|  Claims stay abstract; no observation prompts  |
+|  or decision consequences for the reader.      |
+|  → Add a contact test: "if you do X, you      |
+|    should notice Y; if not, the claim is       |
+|    weakened."                                  |
 |                                                |
++-----------------------------------------------+
+|  Scores are rubric-locked. Submit revised      |
+|  text to re-score.                             |
 +-----------------------------------------------+
 |  [ Evaluate another text ]                     |
 +-----------------------------------------------+
-|  claude-haiku-4-5  *  2.4s  *  $0.0045        |
-|  4,521 input tokens  *  342 output tokens      |
+|  claude-haiku-4-5 · 2.4s · $0.0045            |
+|  Context: medium · Rhetoric risk: low          |
 +-----------------------------------------------+
 ```
 
@@ -185,18 +211,25 @@ Shown after successful evaluation.
 - Overall score in a color-coded box (see [Scoring Framework](./scoring-framework.md#color-coding))
 - Word count and processing time
 
+**Analysis section**
+- Core thesis: the evaluator's 1-2 sentence read of the text's central claim. This grounds everything that follows — the user sees what the evaluator understood before seeing scores.
+- Key terms: displayed as inline tags/chips. The 3-10 terms the evaluator identified as "doing conceptual work." Tells the writer where to focus definition effort.
+
 **Summary section**
 - 2-3 sentence assessment from the LLM
+- Must include: strongest dimension, weakest dimension, single biggest lever for improvement
 - Provides high-level takeaway before detailed scores
 
 **Score rows (5 total)**
 
 Each criterion row shows:
 - Criterion name (bold)
-- Criterion description (from constants)
-- Calibrated score (large, color-coded)
-- Provisional score (small, parenthetical, for reference)
-- 1-sentence note explaining the score for this specific text
+- Score (large, color-coded) — single number, no calibration dual-display
+- Evaluation: 1 sentence explaining what the text does on this criterion, citing text features (definitions, scope, inferential steps, boundary conditions, etc.)
+- Suggestion: 1 sentence giving the single most impactful concrete edit, prefixed with `→`. Phrased as an executable move (e.g., "Replace X with Y", "Define A vs B", "Add a falsifier / failure mode").
+
+**Re-score notice**
+- Static UI text (not LLM output): "Scores are rubric-locked. Submit revised text to re-score."
 
 **Reset button**
 - Label: "Evaluate another text"
@@ -206,8 +239,8 @@ Each criterion row shows:
 - Model identifier (e.g., `claude-haiku-4-5`)
 - Processing time in seconds
 - Cost in USD
-- Input and output token counts
-- This metadata serves the transparency goal: users see exactly what went into their evaluation
+- Context sufficiency level (`low` | `medium` | `high`)
+- Rhetoric risk level (`low` | `medium` | `high`) — amber treatment when `medium`, red when `high`
 
 ---
 

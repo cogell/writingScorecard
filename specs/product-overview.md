@@ -6,7 +6,7 @@
 
 ## What It Is
 
-FAST (Framework for Assessing Systematic Thinking) is a web application that scores conceptual writing on 5 dimensions and returns a standardized scorecard. It uses an LLM (Claude) as the evaluation engine, with a calibration layer to ensure scores are conservative and meaningful.
+FAST (Framework for Assessing Systematic Thinking) is a web application that scores conceptual writing on 5 dimensions and returns a standardized scorecard. It uses an LLM (Claude) as the evaluation engine, with the full FAST v1.0 rubric to ensure scores are discriminating and meaningful.
 
 ## Who It's For
 
@@ -18,16 +18,14 @@ This is explicitly **not** a grammar checker or writing style analyzer. It evalu
 
 ### "An instrument, not a grade"
 
-FAST is a measurement tool. The framing is deliberate: it tells you how your writing performs on specific dimensions, not whether it's "good" or "bad." A low Pragmatic Return score doesn't mean the writing is bad -- it means the ideas don't yet have operational hooks.
+FAST is a measurement tool. The framing is deliberate: it tells you how your writing performs on specific dimensions, not whether it's "good" or "bad." A low Pragmatic / Experience score doesn't mean the writing is bad -- it means the ideas don't yet return to lived experience with testable contact.
 
-### Conservative calibration
+### Tough, rubric-anchored scoring
 
-All scores are adjusted downward by 1.5 points. This means:
-- A **5** (after calibration) indicates competent writing that meets basic expectations
+The system uses the full FAST v1.0 rubric — with Primary, Secondary, Tertiary, and Supporting Considerations per criterion — to anchor scoring. There is no mechanical calibration offset. Instead, the rich rubric plus aggressive scoring guidance in the system prompt ensure scores are discriminating:
+- A **5** indicates competent writing that meets basic expectations
 - A **7+** is rare and signals genuinely strong work
 - Scoring **7+** across all criteria would be publication-worthy at a top venue
-
-This calibration exists because LLMs tend toward generous scoring. The offset ensures high scores carry real signal.
 
 ### What FAST measures
 
@@ -35,15 +33,15 @@ FAST measures **disciplined abstraction**, not writing style. The 5 criteria ass
 1. Whether the text says what it means (Clarity)
 2. Whether it compresses without losing essentials (Simplexity)
 3. Whether it catches its own errors (Error Correction)
-4. Whether the ideas apply broadly (Unity/Scope)
-5. Whether you can do something with the ideas (Pragmatic Return)
+4. Whether the ideas integrate without flattening (Unity)
+5. Whether the ideas return to lived experience (Pragmatic / Experience)
 
 See [Scoring Framework](./scoring-framework.md) for full rubric details.
 
 ## UX Principles
 
 - **Dead simple input** -- minimize friction to first score. Paste text, click evaluate.
-- **Transparency** -- show what's being evaluated and how. Display raw and calibrated scores, model used, processing cost.
+- **Transparency** -- show what's being evaluated and how. Display scores, model used, processing cost, and the evaluator's analysis (core thesis, key terms).
 - **No chat, no follow-up** -- submit text, get scorecard, done. This is a single-use instrument, not a conversation.
 
 ## Success Criteria
