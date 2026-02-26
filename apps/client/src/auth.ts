@@ -99,6 +99,10 @@ export function createAuth(env: AuthEnv, request: Request) {
     baseURL,
     secret: env.BETTER_AUTH_SECRET,
     database: drizzleAdapter(db, { provider: 'sqlite', schema }),
+    session: {
+      expiresIn: 60 * 60 * 24 * 90, // 90 days
+      updateAge: 60 * 60 * 24, // refresh session expiry every 24h of activity
+    },
     trustedOrigins: [
       'http://localhost:5173',
       'http://localhost:5174',
