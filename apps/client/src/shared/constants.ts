@@ -22,7 +22,7 @@ export const CRITERION_DESCRIPTIONS: Record<Criterion, string> = {
 export const MIN_TEXT_LENGTH = 100;
 export const MAX_TEXT_LENGTH = 50000;
 
-// Claude Haiku 4.5 pricing (USD per million tokens)
+// Claude model pricing (USD per million tokens)
 // Source: https://platform.claude.com/docs/en/about-claude/pricing
 export const MODEL_PRICING = {
   'claude-haiku-4-5': {
@@ -32,6 +32,14 @@ export const MODEL_PRICING = {
   'claude-sonnet-4-6': {
     inputPricePerMTok: 3.0, // $3.00 per million input tokens
     outputPricePerMTok: 15.0, // $15.00 per million output tokens
+  },
+  'claude-opus-4-5': {
+    inputPricePerMTok: 5.0, // $5.00 per million input tokens
+    outputPricePerMTok: 25.0, // $25.00 per million output tokens
+  },
+  'claude-opus-4-6': {
+    inputPricePerMTok: 5.0, // $5.00 per million input tokens
+    outputPricePerMTok: 25.0, // $25.00 per million output tokens
   },
 } as const;
 

@@ -46,6 +46,7 @@ coverage/
 # Misc
 *.local
 .cache/
+tmp/
 
 # Beads (local db files and reports)
 .beads/beads.db

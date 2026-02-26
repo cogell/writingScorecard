@@ -102,6 +102,7 @@ export function createAuth(env: AuthEnv, request: Request) {
     trustedOrigins: [
       'http://localhost:5173',
       'http://localhost:5174',
+      'http://localhost:5175',
       'http://localhost:8792',
     ],
     user: {
